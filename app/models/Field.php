@@ -1,7 +1,10 @@
 <?php
 
 class Field extends Eloquent {
-	
+
+	protected $table = 'forms';
+	protected $guarded = array();
+
 	public static function form_field() {
 
 		$list = array(
@@ -314,7 +317,7 @@ class Field extends Eloquent {
 						),
 						array(
 							'type' => 'text',
-							'name' => 'f_desired_collision_deductible',
+							'name' => 'f_collision_deductible',
 							'label' => 'Desired collision deductible'
 						),
 						array(

@@ -6,70 +6,65 @@ Web2Carz Form
 
 
 @section('content')
-	{{ Form::open(array('url' => 'add_sales', 'method' => 'post', 'class' => 'custom')) }}
 	<div class="row">
 		<div class="section-container auto" data-section>
 			<section>
 				<p class="title"><a href="#section1" style="font-weight: bold;">Custom Form</a></p>
 				<div class="content" data-slug="section2">
-					<fieldset>
-					<legend style="color: #2ba6cb;">Custom Form</legend>
-					<table width="600px;" style="margin-top: 10px;">
+					<table class="large-8">
 						@foreach($custom_fields as $key => $value)
 						<tr>
-							<td style="font-weight: bold;" width="200px;">{{ $value }}:</td>
-							<td>{{ Form::text($key, '', $attributes = array('readonly' => 'readonly')) }}</td>
+							<td style="font-weight: bold;" class="large-5">{{ $value }}:</td>
+							<td>{{ Form::text($key, $record->$key, $attributes = array('readonly' => 'readonly')) }}</td>
 						</tr>
 						@endforeach
 					</table>
-					</fieldset>
 				</div>
 			</section>
 			<section>
-				<p class="title"><a href="#section1" style="font-weight: bold;">Edittable Form</a></p>
+				<p class="title"><a href="#section1" style="font-weight: bold;">Editable Form</a></p>
 				<div class="content" data-slug="section2">
-					<fieldset>
-					<legend style="color: #2ba6cb;">Edittable Form</legend>
-					<table width="600px;" style="margin-top: 10px;">
+					{{ Form::open(array('url' => 'form/add', 'method' => 'post', 'class' => 'custom')) }}
+					<table class="large-8">
 						@foreach($edittable_fields as $test)
 						@if($test['label'] == 'Gender')
 						<tr style="text-align: center;">
-							<td colspan="2" style="font-weight: bold; color: #2ba6cb;" width="200px;">DRIVERS INFORMATION</td>
+							<td colspan="2" style="font-weight: bold; color: #2ba6cb;" class="large-5">DRIVERS INFORMATION</td>
 						</tr>
 						@endif
 						<tr>
 							@if($test['type'] == 'text')
 							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
-							<td>{{ Form::text($test['name'], '') }}</td>
+							<td>{{ Form::text($test['name'], $record->form->$test['name']) }}</td>
 							@elseif($test['type'] == 'radio')
 							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
 							<td>
-								{{ Form::radio($test['name'], $test['choice1']) }} {{ $test['choice1'] }} &nbsp;&nbsp;&nbsp;&nbsp; 
-								{{  Form::radio($test['name'], $test['choice2']) }} {{ $test['choice2'] }} 
+								{{ Form::radio($test['name'], $test['choice1'], $record->form->$test['name']==$test['choice1']?true:false) }} {{ $test['choice1'] }} &nbsp;&nbsp;&nbsp;&nbsp; 
+								{{  Form::radio($test['name'], $test['choice2'], $record->form->$test['name']==$test['choice2']?true:false) }} {{ $test['choice2'] }} 
 								@if(isset($test['choice3']))
 								&nbsp;&nbsp;&nbsp;&nbsp; 
-								{{  Form::radio($test['name'], $test['choice3']) }} {{ $test['choice3'] }} 
+								{{  Form::radio($test['name'], $test['choice3'], $record->form->$test['name']==$test['choice3']?true:false) }} {{ $test['choice3'] }} 
 								@endif
 								@if(isset($test['choice4']))
 								&nbsp;&nbsp;&nbsp;&nbsp; 
-								{{  Form::radio($test['name'], $test['choice4']) }} {{ $test['choice4'] }} 
+								{{  Form::radio($test['name'], $test['choice4'], $record->form->$test['name']==$test['choice4']?true:false) }} {{ $test['choice4'] }} 
 								@endif
 							</td>
 							@else
 							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
-							<td>{{ Form::select($test['name'], $test['list']) }}</td>
+							<td>{{ Form::select($test['name'], $test['list'], $record->form->$test['name']) }}</td>
 						</tr>
 						@endif
 						@endforeach
 					</table>
-					</fieldset>
+					{{ Form::hidden('record_id', $record->id) }}
+					{{ Form::submit('SAVE', array('class' => 'button radius')) }}
+					{{ Form::token(); }}
+					{{ Form::close(); }}
 				</div>
 			</section>
 		</div>
-		{{ Form::submit('SAVE', array('class' => 'button radius')) }}
 	</div>
-	{{ Form::token(); }}
-	{{ Form::close(); }}
 	
 @endsection
 
