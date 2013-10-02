@@ -1,10 +1,10 @@
 <?php
 
-class FormController extends BaseController {
+class Form extends Eloquent {
+	
+	public function form_field() {
 
-	public function form() {
-
-		$form_field = array(
+		$list = array(
 			'l_phone' => 'Phone Number',
 			'l_first_name' => 'First Name',
 			'l_last_name' => 'Last Name',
@@ -31,8 +31,12 @@ class FormController extends BaseController {
 			'l_cosigner' => 'Cosigner'
 			);
 
-		
-		$edit_field = array(
+		return $list;
+	}
+
+	public function custom_field() {
+
+		$list = array(
 						array(
 							'type' => 'radio',
 							'name' => 'f_car_loan',
@@ -519,10 +523,7 @@ class FormController extends BaseController {
 
 			);
 
-		return View::make('section_form')
-				->with('edittable_fields', $edit_field)
-				->with('custom_fields', $form_field);
-
+		return $list;
 	}
 
 }

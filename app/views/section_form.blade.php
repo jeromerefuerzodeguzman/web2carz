@@ -32,41 +32,11 @@ Web2Carz Form
 					<legend style="color: #2ba6cb;">Edittable Form</legend>
 					<table width="600px;" style="margin-top: 10px;">
 						@foreach($edittable_fields as $test)
-						<tr>
-							@if($test['type'] == 'text')
-							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
-							<td>{{ Form::text($test['name'], '') }}</td>
-							@elseif($test['type'] == 'radio')
-							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
-							<td>
-								{{ Form::radio($test['name'], $test['choice1']) }} {{ $test['choice1'] }} &nbsp;&nbsp;&nbsp;&nbsp; 
-								{{  Form::radio($test['name'], $test['choice2']) }} {{ $test['choice2'] }} 
-								@if(isset($test['choice3']))
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								{{  Form::radio($test['name'], $test['choice3']) }} {{ $test['choice3'] }} 
-								@endif
-								@if(isset($test['choice4']))
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								{{  Form::radio($test['name'], $test['choice4']) }} {{ $test['choice4'] }} 
-								@endif
-							</td>
-							@else
-							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
-							<td>{{ Form::select($test['name'], $test['list']) }}</td>
+						@if($test['label'] == 'Gender')
+						<tr style="text-align: center;">
+							<td colspan="2" style="font-weight: bold; color: #2ba6cb;" width="200px;">DRIVERS INFORMATION</td>
 						</tr>
 						@endif
-						@endforeach
-					</table>
-					</fieldset>
-				</div>
-			</section>
-			<section>
-				<p class="title"><a href="#section1" style="font-weight: bold;">Driver's Information</a></p>
-				<div class="content" data-slug="section2">
-					<fieldset>
-					<legend style="color: #2ba6cb;">Edittable Form</legend>
-					<table width="600px;" style="margin-top: 10px;">
-						@foreach($drivers_fields as $test)
 						<tr>
 							@if($test['type'] == 'text')
 							<td style="font-weight: bold;" width="200px;">{{ $test['label'] }}:</td>
