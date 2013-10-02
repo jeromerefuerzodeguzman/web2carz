@@ -1,8 +1,8 @@
 <?php
 
-class Form extends Eloquent {
+class Field extends Eloquent {
 	
-	public function form_field() {
+	public static function form_field() {
 
 		$list = array(
 			'l_phone' => 'Phone Number',
@@ -34,7 +34,7 @@ class Form extends Eloquent {
 		return $list;
 	}
 
-	public function custom_field() {
+	public static function custom_field() {
 
 		$list = array(
 						array(
