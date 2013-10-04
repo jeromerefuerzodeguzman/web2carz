@@ -58,9 +58,29 @@ Web2Carz Form
 						@endforeach
 					</table>
 					{{ Form::hidden('record_id', $record->id) }}
+					{{ Form::hidden('agent', $record->d_agent) }}
 					{{ Form::submit('SAVE', array('class' => 'button radius')) }}
 					{{ Form::token(); }}
 					{{ Form::close(); }}
+				</div>
+			</section>
+			<section>
+				<p class="title"><a href="#section1" style="font-weight: bold;">Agents List</a></p>
+				<div class="content" data-slug="section2">
+					<table class="large-12">
+						<tr style="text-align: center;">
+							<th>Phone Number</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+						</tr>
+						@foreach($agent_lists as $list)
+						<tr style="text-align: center;">
+							<td>{{ $list->l_phone }}</td>
+							<td>{{ $list->l_first_name }}</td>
+							<td>{{ $list->l_last_name }}</td>
+						</tr>
+						@endforeach
+					</table>
 				</div>
 			</section>
 		</div>

@@ -12,7 +12,7 @@
 */
 Route::get('/', 'FormController@form');
 //view record
-Route::get('record/{id}', 'RecordController@view');
+Route::get('record/{id}/{agent}', 'RecordController@view');
 
 //add form record
 Route::post('form/add', 'FormController@add');
